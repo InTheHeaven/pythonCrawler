@@ -1,11 +1,13 @@
 import re
-import aiofiles
+import aiofiles     
 import aiohttp
 import asyncio
 from lxml import etree
 import os
 
+# 章节 类 
 class Section:
+    # 构造函数
     def __init__(self, href, name, num):
         self.href = href
         self.name = name
@@ -37,7 +39,9 @@ url_o = 'https://www.westnovel.com/hbtr/'
 
 
 async def main():
-    os.chdir("D:\It\CrawlerFlute\literature\霍比特人")
+    if os.path.exists("TheHobbit") == False:
+        os.mkdir("TheHobbit")
+    os.chdir("TheHobbit")
     code_o = await getCode(url_o)
     # print(code_o)
     o_tree = etree.HTML(code_o)
